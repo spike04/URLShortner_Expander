@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
     // In a real application, you would save this mapping to a database
     // For this example, we'll just return the shortened URL
-    const shortUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/${shortCode}`
+    const shortUrl = `${urlObj.protocol}//${urlObj.host}/${shortCode}`
 
     return NextResponse.json({ shortUrl })
   } catch {

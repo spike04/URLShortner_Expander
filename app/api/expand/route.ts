@@ -12,9 +12,10 @@ export async function POST(request: Request) {
     }
 
     try {
+      const urlObj = new URL(url)
       const code = url.split('/').pop()
       const orgPath = Buffer.from(code, 'base64').toString()
-      const originalUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/${orgPath}`
+      const originalUrl = `${urlObj.protocol}//${urlObj.host}/${orgPath}`
       return NextResponse.json({ originalUrl })
     } catch {
       return NextResponse.json({ error: 'Invalid short code' }, { status: 400 })
